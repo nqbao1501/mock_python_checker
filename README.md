@@ -219,13 +219,14 @@ $(eval $(call BuildPackage,python-check))
                                      ▲
                                      └─ [Gắn Tag Release: v1.0-python-check]
 
+
+```
 * **Kiểm tra danh sách nhánh hiện có:**
 ```bash
 lilac@lilac-Inspiron-5557:~/mock_python_checker$ git branch
 * openwrt-21.02
   openwrt-23.05
   feature/python-version-check
-```
 ## 6.2. Quy trình build package
 Quy trình biên dịch chéo tự động được thực hiện tuần tự thông qua công cụ Root Makefile nhằm giảm thiểu tối đa các thao tác gõ lệnh thủ công:
 
