@@ -203,13 +203,28 @@ $(eval $(call BuildPackage,python-check))
 # 6. Sử dụng chương trình 
 
 ## 6.1. Cấu hình git
-Để có thể  test .ipk trên các phiên bản khác nhau, của openwrt, dự án lưu trữ cấu hình của hai phiên bản OpenWrt trên hai nhánh Git độc lập hoàn toàn để phục vụ kiểm thử song song, không cần duy trì hai thư mục mã nguồn riêng biệt trên máy Host.
+## 6.1. Cấu hình Git và Quản lý Nhánh (Git Integration)
+
+Để đáp ứng trọn vẹn cả yêu cầu đặc tả của đề bài lẫn bài toán kiểm thử thực tế trên nhiều nền tảng, kiến trúc Git của dự án được phân tách rõ ràng thành **03 nhánh độc lập** với hai vai trò khác nhau (02 nhánh chức năng môi trường và 01 nhánh tính năng nộp bài):
+
+* **Nhánh Chức năng Môi trường (`openwrt-21.02` và `openwrt-23.05`):** Hai nhánh này đóng vai trò cô lập cấu hình hệ thống tệp gốc (`rootfs`) và các bộ SDK tương ứng của từng phiên bản OpenWrt. Cơ chế này giúp chuyển đổi nhanh môi trường kiểm thử (Context Switch) ngay trên máy Host mà không cần duy trì nhiều thư mục dự án cồng kềnh.
+* **Nhánh Tính năng Yêu cầu (`feature/python-version-check`):** Nhánh bắt buộc theo đặc tả của đề bài. Nhánh này được rẽ nhánh từ môi trường phát triển, tổng hợp mã nguồn ứng dụng `check_python.c` hoàn chỉnh cùng bộ Dockerfile ổn định nhất để làm phân vùng nghiệm thu cuối cùng.
+
+```text
+                      ┌──> openwrt-21.02 (Môi trường test Python 3.9)
+                      │
+─── [Nhánh gốc] ──────┼──> openwrt-23.05 (Môi trường test Python 3.11)
+                      │
+                      └──> feature/python-version-check (Nhánh nộp bài chính thức)
+                                     ▲
+                                     └─ [Gắn Tag Release: v1.0-python-check]
 
 * **Kiểm tra danh sách nhánh hiện có:**
 ```bash
 lilac@lilac-Inspiron-5557:~/mock_python_checker$ git branch
 * openwrt-21.02
   openwrt-23.05
+  feature/python-version-check
 ```
 ## 6.2. Quy trình build package
 Quy trình biên dịch chéo tự động được thực hiện tuần tự thông qua công cụ Root Makefile nhằm giảm thiểu tối đa các thao tác gõ lệnh thủ công:
