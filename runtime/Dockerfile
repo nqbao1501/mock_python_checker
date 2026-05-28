@@ -1,4 +1,4 @@
 FROM scratch
 
-ADD openwrt-21.02.7-x86-64-rootfs.tar.gz /
+ADD openwrt-23.05.0-x86-64-rootfs.tar.gz /
 CMD ["/bin/sh"]
