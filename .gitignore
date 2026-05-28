@@ -1,0 +1,5 @@
+# Không track file ipk thành phẩm sinh ra ngoài máy thật
+bin/
+
+# Loại bỏ các file tạm, file log
+*.log
