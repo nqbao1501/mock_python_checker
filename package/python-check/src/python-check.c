@@ -3,8 +3,8 @@
 #include <string.h>
 
 #define LOG_FILE "/tmp/python_ver.log"
-#define CMD_CHECK "which python3.9 > /dev/null 2>&1"
-#define CMD_VERSION "python3.9 --version 2>&1"
+#define CMD_CHECK "which python3 > /dev/null 2>&1" 
+#define CMD_VERSION "python3 --version 2>&1"
 
 int main() {
     char version_buffer[128] = {0};
@@ -15,11 +15,11 @@ int main() {
     int status = system(CMD_CHECK);
 
     if (status != 0) {
-        fprintf(stderr, "CASE 1: Python 3.9 NOT FOUND\n");
+        fprintf(stderr, "CASE 1: Python 3 NOT FOUND\n");
 
         FILE *log_fp = fopen(LOG_FILE, "w");
         if (log_fp) {
-            fprintf(log_fp, "CASE 1: Python 3.9 NOT FOUND\n");
+            fprintf(log_fp, "CASE 1: Python 3 NOT FOUND\n");
             fclose(log_fp);
         }
 
