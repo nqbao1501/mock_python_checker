@@ -257,25 +257,24 @@ opkg install python-check_1.0-1_x86_64.ipk
 ```
 
 Bây giờ, do openwrt rootfs chưa có python, nên khi chay python-test sẽ không thấy python trong hệ điều hành.
-
-![alt text](image.png)
+<img width="654" height="187" alt="image" src="https://github.com/user-attachments/assets/a297bf2f-d0b9-47da-921b-fc9e778a234d" />
 
 Ta thực hiện tải python vào trong container. Trong OpenWRT 21.02.7, python là python 3.9.16 
 ```bash
 opkg update && opkg install python3
 python-check
 ```
-![alt text](image-1.png)
+<img width="870" height="544" alt="image" src="https://github.com/user-attachments/assets/75a0c3cf-3be9-4c6d-b928-2e17e9d29d48" />
+
 
 Ta chuyển sang OpenWrt 23.05.0 có python 3.11 để test.
 ```bash
 git switch openwrt-23.05
 ```
 Rồi thực hiện các bước tương tự như trên
-![alt text](image-2.png)
+<img width="870" height="544" alt="image" src="https://github.com/user-attachments/assets/b91dea2d-924d-4f40-b93f-9c22646dbf60" />
 
 Và kết quả log cũng được lưu vào log file
-![alt text](image-3.png)
+<img width="870" height="102" alt="image" src="https://github.com/user-attachments/assets/d755a664-9424-4bf2-96f6-91f286c1a72f" />
 
 
-```
